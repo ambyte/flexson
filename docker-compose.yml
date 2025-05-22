@@ -1,0 +1,58 @@
+services:
+  flexson:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: flexson-app
+    restart: unless-stopped
+    ports:
+      - "8123:80"
+    environment:
+      - APP_JWT_SECRET=1your_super_secure_jwt_secret_key_change_in_production
+      - APP_MONGO_URI=mongodb://admin:password@mongo:27017
+      - APP_MONGO_DB=1flexsondb
+      - APP_ADMIN_USERNAME=1admin
+      - APP_ADMIN_PASSWORD=1password
+      - APP_PUBLIC_DISABLE_REGISTRATION=false
+      - APP_PUBLIC_BASE_URL=http://127.0.0.1:8123
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo:latest
+    container_name: flexson-db
+    restart: unless-stopped
+    ports:
+      - "27027:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - app-network
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: flexson-mongo-express
+    ports:
+      - "8083:8081"
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=password
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  app-network:
+    driver: bridge
