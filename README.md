@@ -11,7 +11,7 @@
 </h2>
 
 <p align="center">
-A comprehensive platform for efficient JSON file management with robust authentication, collaborative group workspaces, secure API access, and versatile data endpoints. Flexson streamlines creating, organizing, and sharing JSON data through an intuitive interface while maintaining enterprise-level security and access controls.
+A comprehensive platform for efficient JSON file management with robust authentication, collaborative group workspaces, secure API access, and versatile data endpoints. Flexson streamlines creating, organizing, and sharing JSON data through an intuitive interface while maintaining enterprise-level security and access controls. It is an ideal solution for storing and managing parameters for other services and applications within a company, ensuring seamless integration and centralized configuration management.
 </p>
 
 # Features
@@ -24,6 +24,13 @@ A comprehensive platform for efficient JSON file management with robust authenti
 - 🔑 API key generation and management
 - 🛡️ Flexible group access (public write, protected by API key)
 - 🖥️ Modern UI with Vuetify
+
+## Live Demo
+
+You can test the application at: [https://flexson.vercel.app](https://flexson.vercel.app)
+
+username - flexson_user
+password - flexson_password
 
 # Quick Start
 
